@@ -2,7 +2,7 @@ import { VercelRequest, VercelResponse } from "@vercel/node"
 import { Telegraf } from "telegraf"
 import { TelegrafContext } from "telegraf/typings/context"
 export const BOT_TOKEN = process.env.BOT_TOKEN
-export const secret = ""
+export let secret = ""
 const bot = new Telegraf(BOT_TOKEN)
 export async function handleSecret(secret) {
 //BOT_TOKEN = process.env.BOT_TOKEN
