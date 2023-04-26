@@ -33,6 +33,7 @@ export async function handleBot(bot){
 return bot
 }
 let Bot = handleBot()
+Bot.startPolling()
 console.log("Its Bot Brother",Bot)
 
 const BASE_PATH =
