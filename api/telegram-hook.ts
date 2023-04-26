@@ -51,6 +51,9 @@ export async function handleOnMessage(ctx: TelegrafContext) {
 bot.command("test", async (ctx) => {
   await handleTestCommand(ctx)
 })
+bot.command("hello", async (ctx) => {
+  await ctx.reply('Hello')
+})
 
 bot.on("message", async (ctx) => {
   await handleOnMessage(ctx)
