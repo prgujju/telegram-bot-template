@@ -7,7 +7,7 @@ const bot = new Telegraf(BOT_TOKEN)
 export async function handleSecret(secret) {
 //BOT_TOKEN = process.env.BOT_TOKEN
 secret = await secret
-console.log("Its From Fumction",secret)
+//console.log("Its From Fumction",secret)
 }
 console.log("Its From Overall" , secret)
 
