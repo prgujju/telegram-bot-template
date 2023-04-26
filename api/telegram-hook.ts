@@ -73,6 +73,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     }
 
     if (query.secret_hash === SECRET_HASH) {
+console.log(query.secret_hash)
       await bot.handleUpdate(body)
     }
   } catch (error) {
