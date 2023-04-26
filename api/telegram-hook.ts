@@ -1,6 +1,34 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { Telegraf } from "telegraf";
 import { TelegrafContext } from "telegraf/typings/context";
+export default async (req: VercelRequest, res: VercelResponse) => {
+  try {
+    const { body, query } = req;
+
+    if (query.setWebhook === "true") {
+      const webhookUrl = `${BASE_PATH}/api/telegram-hook?secret_hash=${query.secret_hash}`;
+
+      const isSet = await bot.telegram.setWebhook(webhookUrl);
+      console.log(`Set webhook to ${webhookUrl}: ${isSet}`);
+    }
+
+    if (query.secret_hash) {
+      const botToken = process.env.BOT_TOKEN
+      const bot = new Telegraf(botToken);
+await handleBot(bot);
+console.log(botToken)
+console.log("body",body)
+
+      await bot.handleUpdate(body);
+    }
+  } catch (error) {
+    console.error("Error sending message");
+    console.log(error.toString());
+  }
+
+  res.status(200).send("OK");
+};
+
 export async function handleBot(bot){
 return bot
 }
@@ -69,30 +97,4 @@ console.log("Message")
 });
 
 
-export default async (req: VercelRequest, res: VercelResponse) => {
-  try {
-    const { body, query } = req;
 
-    if (query.setWebhook === "true") {
-      const webhookUrl = `${BASE_PATH}/api/telegram-hook?secret_hash=${query.secret_hash}`;
-
-      const isSet = await bot.telegram.setWebhook(webhookUrl);
-      console.log(`Set webhook to ${webhookUrl}: ${isSet}`);
-    }
-
-    if (query.secret_hash) {
-      const botToken = process.env.BOT_TOKEN
-      const bot = new Telegraf(botToken);
-await handleBot(bot);
-console.log(botToken)
-console.log("body",body)
-
-      await bot.handleUpdate(body);
-    }
-  } catch (error) {
-    console.error("Error sending message");
-    console.log(error.toString());
-  }
-
-  res.status(200).send("OK");
-};
