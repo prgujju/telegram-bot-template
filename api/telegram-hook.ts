@@ -49,8 +49,10 @@ export async function handleOnMessage(ctx: TelegrafContext) {
 
 const bot = new Telegraf();
 
+console.log(bot)
 bot.command("test", async (ctx) => {
   await handleTestCommand(ctx);
+console.log("Test Command")
 });
 
 bot.command("hello", async (ctx) => {
@@ -58,6 +60,7 @@ bot.command("hello", async (ctx) => {
 });
 
 bot.on("message", async (ctx) => {
+console.log("Message")
   await handleOnMessage(ctx);
 });
 
@@ -76,6 +79,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     if (query.secret_hash) {
       const botToken = process.env.BOT_TOKEN
       const bot = new Telegraf(botToken);
+console.log(botToken)
+console.log("body",body)
 
       await bot.handleUpdate(body);
     }
