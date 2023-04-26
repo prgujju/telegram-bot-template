@@ -3,7 +3,7 @@ import { Telegraf } from "telegraf"
 import { TelegrafContext } from "telegraf/typings/context"
 export var BOT_TOKEN = ''
 export var secret = ""
-const bot = new Telegraf(BOT_TOKEN)
+const bot = new Telegraf()
 export async function handleSecret(secret) {
 //BOT_TOKEN = process.env.BOT_TOKEN
 secret = secret
