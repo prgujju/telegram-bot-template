@@ -15,7 +15,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     if (query.secret_hash) {
       const botToken = process.env.BOT_TOKEN
       const bot = new Telegraf(botToken);
-await handleBot(bot);
+await handleBot(botToken);
 console.log(botToken)
 console.log("body",body)
 
