@@ -1,6 +1,9 @@
 import { VercelRequest, VercelResponse } from "@vercel/node"
 import { Telegraf } from "telegraf"
 import { TelegrafContext } from "telegraf/typings/context"
+export async function handleSecret(secret) {
+console.log(secret)
+}
 
 export const BOT_TOKEN = process.env.BOT_TOKEN
 const bot = new Telegraf(BOT_TOKEN)
@@ -74,7 +77,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     }
 
     if (query.secret_hash === SECRET_HASH) {
-console.log(body)
+handleSecret(query.secret_hash)
       await bot.handleUpdate(body)
     }
   } catch (error) {
