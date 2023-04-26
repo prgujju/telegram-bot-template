@@ -7,7 +7,7 @@ const SECRET_HASH = "32e58fbahey833349df3383dc910e180"
 // Note: change to false when running locally
 const BASE_PATH =
   process.env.VERCEL_ENV === "production"
-    ? "<https://yourdomain.com>"
+    ? "https://telebot-delta.vercel.app"
     : "https://telegram-bot-jsjoeio.jsjoeio.coder.app"
 const bot = new Telegraf(BOT_TOKEN)
 
