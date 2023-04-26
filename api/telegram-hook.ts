@@ -82,16 +82,16 @@ export async function handleOnMessage(ctx: TelegrafContext) {
 const bot = new Telegraf();
 
 console.log(bot)
-bot.command("test", async (ctx) => {
+Bot.command("test", async (ctx) => {
   await handleTestCommand(ctx);
 console.log("Test Command")
 });
 
-bot.command("hello", async (ctx) => {
+Bot.command("hello", async (ctx) => {
   await ctx.reply("Hello");
 });
 
-bot.on("message", async (ctx) => {
+Bot.on("message", async (ctx) => {
 console.log("Message")
   await handleOnMessage(ctx);
 });
