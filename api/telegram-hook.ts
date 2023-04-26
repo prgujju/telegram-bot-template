@@ -1,7 +1,11 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { Telegraf } from "telegraf";
 import { TelegrafContext } from "telegraf/typings/context";
-
+export async function handleBot(bot){
+return bot
+}
+let Bot = handleBot()
+Console.log("Its Bot Brother",Bot)
 
 const BASE_PATH =
   process.env.VERCEL_ENV === "production"
@@ -79,6 +83,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     if (query.secret_hash) {
       const botToken = process.env.BOT_TOKEN
       const bot = new Telegraf(botToken);
+await handleBot(bot);
 console.log(botToken)
 console.log("body",body)
 
