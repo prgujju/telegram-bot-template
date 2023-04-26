@@ -33,7 +33,7 @@ export async function handleBot(bot){
 return bot
 }
 let Bot = handleBot()
-Console.log("Its Bot Brother",Bot)
+console.log("Its Bot Brother",Bot)
 
 const BASE_PATH =
   process.env.VERCEL_ENV === "production"
