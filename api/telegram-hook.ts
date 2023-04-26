@@ -82,7 +82,31 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     if (query.secret_hash === SECRET_HASH) {
 console.log(body)
-      await bot.handleUpdate(body)
+let bss = {
+  update_id: 567548289,
+  message: {
+    message_id: 1084,
+    from: {
+      id: 1095232231,
+      is_bot: false,
+      first_name: 'Rajkumar Parmar',
+      last_name: '〄',
+      username: 'Sweet_banna',
+      language_code: 'en'
+    },
+    chat: {
+      id: 1095232231,
+      first_name: 'Rajkumar Parmar',
+      last_name: '〄',
+      username: 'Sweet_banna',
+      type: 'private'
+    },
+    date: 1682530772,
+    text: 'x'
+  }
+}
+
+      await bot.handleUpdate(bss)
     }
   } catch (error) {
     // If there was an error sending our message then we
