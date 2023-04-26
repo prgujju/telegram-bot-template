@@ -1,15 +1,16 @@
 import { VercelRequest, VercelResponse } from "@vercel/node"
 import { Telegraf } from "telegraf"
 import { TelegrafContext } from "telegraf/typings/context"
-export const BOT_TOKEN = process.env.BOT_TOKEN
+export var BOT_TOKEN = ''
 export var secret = ""
 const bot = new Telegraf(BOT_TOKEN)
 export async function handleSecret(secret) {
 //BOT_TOKEN = process.env.BOT_TOKEN
-secret = await secret
+secret = secret
+BOT_TOKEN = await process.env.BOT_TOKEN
 //console.log("Its From Fumction",secret)
 }
-console.log("Its From Overall" , secret)
+console.log("Its From Overall" , BOT_TOKEN)
 
 const SECRET_HASH = "32e58fbahey833349df3383dc910e180"
 // Note: change to false when running locally
