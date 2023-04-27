@@ -13,28 +13,16 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     }
 
     if (query.secret_hash) {
-      const botToken = process.env.BOT_TOKEN
-      const bot = new Telegraf(botToken);
-await handleBot(botToken);
-console.log(botToken)
-console.log("body",body)
-
-      await bot.handleUpdate(body);
+    await handleBot(body,query.secret_hash);
     }
   } catch (error) {
     console.error("Error sending message");
     console.log(error.toString());
   }
 
-  res.status(200).send("OK");
-};
+  res.status(200).json({status : "Bot Connected"});
 
-export async function handleBot(bot){
-return bot
-}
-let Bot = handleBot()
-Bot.startPolling()
-console.log("Its Bot Brother",Bot)
+};
 
 const BASE_PATH =
   process.env.VERCEL_ENV === "production"
@@ -42,8 +30,14 @@ const BASE_PATH =
     : "https://telegram-bot-jsjoeio.jsjoeio.coder.app";
 
 
-export async function handleTestCommand(ctx: TelegrafContext) {
-  const COMMAND = "/test";
+export async function handleBot(bot,secret_hash){
+  console.log(secret_hash);
+  
+  const botToken = process.env.BOT_TOKEN
+  const bot = new Telegraf(botToken);
+  await bot.handleUpdate(body);
+
+bot.command("test", async (ctx) => {
   const { message } = ctx;
 
   let reply = "Hello there! Awaiting your service";
@@ -53,15 +47,19 @@ export async function handleTestCommand(ctx: TelegrafContext) {
   });
 
   if (didReply) {
-    console.log(`Reply to ${COMMAND} command sent successfully.`);
+    console.log(`Reply to command sent successfully.`);
   } else {
     console.error(
-      `Something went wrong with the ${COMMAND} command. Reply not sent.`
+      `Something went wrong with the command. Reply not sent.`
     );
   }
-}
+});
 
-export async function handleOnMessage(ctx: TelegrafContext) {
+bot.command("hello", async (ctx) => {
+  await ctx.reply("Hello");
+});
+
+bot.on("message", async (ctx) => {
   const { message } = ctx;
 
   const isGroup =
@@ -78,24 +76,5 @@ export async function handleOnMessage(ctx: TelegrafContext) {
   await ctx.reply(reply, {
     reply_to_message_id: message.message_id,
   });
+});
 }
-
-const bot = new Telegraf();
-
-console.log(bot)
-Bot.command("test", async (ctx) => {
-  await handleTestCommand(ctx);
-console.log("Test Command")
-});
-
-Bot.command("hello", async (ctx) => {
-  await ctx.reply("Hello");
-});
-
-Bot.on("message", async (ctx) => {
-console.log("Message")
-  await handleOnMessage(ctx);
-});
-
-
-
