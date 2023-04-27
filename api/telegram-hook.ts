@@ -31,7 +31,7 @@ const BASE_PATH =
     : "https://telegram-bot-jsjoeio.jsjoeio.coder.app";
 
 
-export async function handleBot(bot,secret_hash){
+export async function handleBot(body,secret_hash){
   console.log(secret_hash);
   
   const botToken = process.env.BOT_TOKEN
