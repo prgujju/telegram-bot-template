@@ -7,7 +7,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
 
     if (query.setWebhook === "true") {
       const webhookUrl = `${BASE_PATH}/api/telegram-hook?secret_hash=${query.secret_hash}`;
-
+      const botToken = process.env.BOT_TOKEN
+      const bot = new Telegraf(botToken);
       const isSet = await bot.telegram.setWebhook(webhookUrl);
       console.log(`Set webhook to ${webhookUrl}: ${isSet}`);
     }
